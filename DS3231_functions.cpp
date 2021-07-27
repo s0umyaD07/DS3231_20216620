@@ -1,12 +1,16 @@
+
 #include "DS3231_functions.h"
-
-
-
-DS3231_functions::bcd_Dec(char b) 
+#define BUFFER_SIZE 19
+#include<fcntl.h>
+#include<sys/ioctl.h>
+#include<unistd.h>
+#include<linux/i2c-dev.h>
+#include<stdio.h>
+int bcd_Dec(char b) 
 
 { return (b/16)*10 + (b%16); }
 
-DS3231_functions::Read_Display_Time_Date()
+int DS3231_functions::Read_Display_Time_Date()
 
 {
 int file;
@@ -29,7 +33,7 @@ if(read(file, buf, BUFFER_SIZE)!=BUFFER_SIZE){
       perror("Failed to read in the buffer\n");
       return 1;
    }
-   printf("The RTC time is %02d:%02d:%02d\n", bcdToDec(buf[2]),
+   printf("The RTC time is %02d:%02d:%02d\n", bcd_Dec(buf[2]),
          bcd_Dec(buf[1]), bcd_Dec(buf[0]));
    close(file);
    return 0;
