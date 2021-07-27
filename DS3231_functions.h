@@ -7,37 +7,19 @@ class DS3231_functions
 
     public:
 
-    void DS3231_functions(){
-
-
-    }
-
-    int bcd_Dec(char b)
-    {
-
-    }
-
-    void Read_Display_Time_Date()
-    {
+    DS3231_functions();
 
     
-    }
 
-    string Read_Display_Temp()
+      int Read_Display_Time_Date();
+    
 
-    {
+    void Read_Display_Temp();
 
+    
 
-    }
+    void Set_Time_Date() ;
 
-    void Set_Time_Date() {
+    void Set_Alarm ();
+};
 
-
-    }
-
-    void Set_Alarm (){
-
-
-    }
-
-}
