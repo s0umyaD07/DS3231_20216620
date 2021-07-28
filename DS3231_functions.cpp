@@ -233,3 +233,18 @@ int DS3231_functions::Interrupt_SqwGenerator()
 
    
 }
+
+/**
+ * Close the file handles and sets a temporary state to -1.
+ */
+void DS3231_functions::close(){
+	::close(this->file);
+	this->file = -1;
+}
+
+/**
+ * Closes the file on destruction, provided that it has not already been closed.
+ */
+DS3231_functions::~DS3231_functions() {
+	if(file!=-1) this->close();
+}
